@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+// import { AuthContext } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function LoginPage() {
   const router = useRouter();
-  const { setUser } = useContext(AuthContext);
+  // const { setUser } = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,33 +17,35 @@ export default function LoginPage() {
     e.preventDefault();
     setErrorMsg("");
 
-    try {
-      const res = await fetch("http://localhost:5000/api/signin", {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+    // try {
+    //   const res = await fetch("http://localhost:5000/api/signin", {
+    //     method: "POST",
+    //     credentials: "include",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({ email, password }),
+    //   });
 
-      const data = await res.json();
-      console.log(data);
-      if (!res.ok) {
-        setErrorMsg(data.message || "Invalid credentials");
-        return;
-      }
+    //   const data = await res.json();
+    //   console.log(data);
+    //   if (!res.ok) {
+    //     setErrorMsg(data.message || "Invalid credentials");
+    //     return;
+    //   }
 
-      // store user in context
-      setUser(data.user);
+    //   // store user in context
+    //   setUser(data.user);
 
-      // redirect based on role
-      if (data.user.role === "client") router.push("/client/dashboard");
-      else if (data.user.role === "surveyor") router.push("/surveyor");
-      else if (data.user.role === "admin") router.push("/admin");
-      else router.push("/dashboard");
+    //   // redirect based on role
+    //   if (data.user.role === "client") router.push("/client/dashboard");
+    //   else if (data.user.role === "surveyor") router.push("/surveyor");
+    //   else if (data.user.role === "admin") router.push("/admin");
+    //   else router.push("/dashboard");
 
-    } catch (error) {
-      setErrorMsg("Something went wrong. Try again.");
-    }
+    // } catch (error) {
+    //   setErrorMsg("Something went wrong. Try again.");
+    // }
+    router.push("/client/dashboard");
+    
   };
 
   return (
