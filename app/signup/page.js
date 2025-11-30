@@ -22,7 +22,7 @@ export default function SignupPage() {
     setErrorMsg("");
 
     try{
-      const res = await fetch("http://localhost:5000/api/signup",{
+      const res = await fetch("https://an-site-solutions-backend.onrender.com/api/signup",{
         method: "POST",
         credentials: "include",
         headers: {"Content-Type":"application/json"},
