@@ -74,15 +74,6 @@ export default function Topbar() {
               />
             </>)}
 
-            // <Image 
-            //   className=""
-            //   src="/profile1.png"
-            //   alt="Profile picture"
-            //   width={40}
-            //   height={40}
-            //   priority
-            // />
-
             <div className="flex flex-col">
               <span className="font-semibold">{user.firstName ? (<>{user.firstName}</>):(<>Name</>)}</span>
               <span className="text-sm text-gray-500">{user.role ? (<>{user.role}</>):(<>Role</>)}</span>
