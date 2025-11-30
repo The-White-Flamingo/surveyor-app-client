@@ -9,7 +9,7 @@ export default function AuthProvider({children}) {
 
     const fetchUser = async ()=>{
         try{
-            const res = await fetch("http://localhost:5000/api/auth/me",{
+            const res = await fetch("https://an-site-solutions-backend.onrender.com/api/auth/me",{
                 credentials: "include",
             });
 
