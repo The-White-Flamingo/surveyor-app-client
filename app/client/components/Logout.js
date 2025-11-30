@@ -6,7 +6,7 @@ export default function LogoutButton() {
   const router = useRouter();
 
   const logout = async () => {
-    await fetch("http://localhost:5000/api/signout", {
+    await fetch("https://an-site-solutions-backend.onrender.com/api/signout", {
       method: "POST",
       credentials: "include",
     });
