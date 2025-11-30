@@ -54,7 +54,7 @@ export default function Topbar() {
             {/* notification icon */}
             
             <span className="w-8 h-8 rounded-lg max-sm:w-8 max-sm:h-8 max-sm:rounded-lg max-sm:p-1 bg-amber-100 text-center flex justify-center items-center"><FiBell size={20}/></span>
-          {user.profilePhoto ? (<>
+              {user.profilePhoto ? (<>
               <Image 
                 className=""
                 src={user.profilePhoto}
