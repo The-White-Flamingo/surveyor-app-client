@@ -1,12 +1,12 @@
 "use client"
 import { useState, useContext } from "react"
-// import { AuthContext } from "../context/AuthContext"
+import { AuthContext } from "../context/AuthContext"
 import { useRouter } from "next/navigation"
 import Link from "next/link";
 
 export default function SignupPage() {
   const router = useRouter();
-  // const { setUser } = useContext(AuthContext);
+  const { setUser } = useContext(AuthContext);
 
   const [firstName,setFirstName] = useState("");
   const [lastName,setLastName] = useState("");
@@ -21,31 +21,30 @@ export default function SignupPage() {
     e.preventDefault();
     setErrorMsg("");
 
-    // try{
-    //   const res = await fetch("http://localhost:5000/api/signup",{
-    //     method: "POST",
-    //     credentials: "include",
-    //     headers: {"Content-Type":"application/json"},
-    //     body: JSON.stringify({firstName,lastName,email,phoneNumber,password,residentialAddress,postalAddress,role:"client"}),
-    //   });
+    try{
+      const res = await fetch("http://localhost:5000/api/signup",{
+        method: "POST",
+        credentials: "include",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({firstName,lastName,email,phoneNumber,password,residentialAddress,postalAddress,role:"client"}),
+      });
 
-    //   const data = await res.json();
-    //   console.log(data)
-    //   if(!res.ok) {
-    //     setErrorMsg(data.message || "Invalid credentials");
-    //     return
-    //   }
+      const data = await res.json();
+      console.log(data)
+      if(!res.ok) {
+        setErrorMsg(data.message || "Invalid credentials");
+        return
+      }
 
-    //   setUser(data.user);
+      setUser(data.user);
       
-    //   if (data.user.role === "client") router.push("/client/dashboard");
-    //   else if (data.user.role === "surveyor") router.push("/surveyor/dashboard");
-    //   else if (data.user.role === "admin") router.push("/admin/dashboard");
-    //   else router.push("/client/dashboard");
-    // }catch(error){
-    //   setErrorMsg("Something went wrong. Try again.")
-    // }
-    router.push("/client/dashboard");
+      if (data.user.role === "client") router.push("/client/dashboard");
+      else if (data.user.role === "surveyor") router.push("/surveyor/dashboard");
+      else if (data.user.role === "admin") router.push("/admin/dashboard");
+      else router.push("/client/dashboard");
+    }catch(error){
+      setErrorMsg("Something went wrong. Try again.")
+    }
     
   };
 
