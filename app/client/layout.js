@@ -1,14 +1,14 @@
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 // import ThemeProvider from "./context/ThemeContext";
-import ProtectedRoute from "./components/ProtectedRoute";
+// import ProtectedRoute from "./components/ProtectedRoute";
 
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="flex max-h-screen overflow-hidden bg-gray-100">
-      <ProtectedRoute roles={["client"]}>
+      // <ProtectedRoute roles={["client"]}>
 
         {/* Sidebar*/}
         <Sidebar />
@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
           </main>
 
         </div>
-        </ProtectedRoute>
+        // </ProtectedRoute>
 
       </body>
     </html>
