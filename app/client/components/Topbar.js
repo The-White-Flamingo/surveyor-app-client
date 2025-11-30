@@ -6,10 +6,10 @@ import { FiBell } from "react-icons/fi";
 import { FiChevronDown } from "react-icons/fi";
 import { FiMenu } from 'react-icons/fi';
 import MobileSideBar from './MobileSideBar';
-import { AuthContext } from "../../context/AuthContext";
+// import { AuthContext } from "../../context/AuthContext";
 
 export default function Topbar() {
-    const { user } = useContext(AuthContext);
+    // const { user } = useContext(AuthContext);
     const [showNavBar,setShowNavBar] = useState(false);
 
 
@@ -54,7 +54,7 @@ export default function Topbar() {
             {/* notification icon */}
             
             <span className="w-8 h-8 rounded-lg max-sm:w-8 max-sm:h-8 max-sm:rounded-lg max-sm:p-1 bg-amber-100 text-center flex justify-center items-center"><FiBell size={20}/></span>
-            {user.profilePhoto ? (<>
+  {/* {user.profilePhoto ? (<>
               <Image 
                 className=""
                 src={user.profilePhoto}
@@ -72,20 +72,20 @@ export default function Topbar() {
                 height={40}
                 priority
               />
-            </>)}
+            </>)} */}
 
-            {/* <Image 
+            <Image 
               className=""
               src="/profile1.png"
               alt="Profile picture"
               width={40}
               height={40}
               priority
-            /> */}
+            />
 
             <div className="flex flex-col">
-              <span className="font-semibold">{user.firstName ? (<>{user.firstName}</>):(<>Name</>)}</span>
-              <span className="text-sm text-gray-500">{user.role ? (<>{user.role}</>):(<>Role</>)}</span>
+              <span className="font-semibold">{/* {user.firstName ? (<>{user.firstName}</>):(<>Name</>)} */} Name</span>
+              <span className="text-sm text-gray-500">{/* {user.role ? (<>{user.role}</>):(<>Role</>)} */} Client</span>
             </div>
             <FiChevronDown size={18} />
 
