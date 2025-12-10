@@ -18,7 +18,7 @@ export default function Sidebar() {
     {name:"Messages",href:"/surveyor/messages",icon: <BiMessageRounded size={20}/>},
     {name:"Help",href:"/surveyor/help",icon: <AiOutlineQuestionCircle size={20}/>},
     {name:"Account",href:"/surveyor/account",icon: <FaUserCircle size={20}/>},
-    {name:"Disputes",href:"/surveyor/disputes",icon: <MdReportProblem size={20}/>}
+    // {name:"Disputes",href:"/surveyor/disputes",icon: <MdReportProblem size={20}/>}
 ]
 
   return (

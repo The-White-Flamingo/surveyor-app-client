@@ -27,7 +27,7 @@ export default function Topbar() {
     {name:"Messages",href:"/surveyor/messages"},
     {name:"Help",href:"/surveyor/help"},
     {name:"Account",href:"/surveyor/account"},
-    {name:"Disputes",href:"/surveyor/disputes"},
+    // {name:"Disputes",href:"/surveyor/disputes"},
     {name:"Notifications",href:"/surveyor/notifications"}
 ]
   return (

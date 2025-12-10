@@ -20,7 +20,7 @@ export default function MobileSideBar({showNavBar,setShowNavBar}) {
     {name:"Messages",href:"/client/messages",icon: <BiMessageRounded size={20}/>},
     {name:"Help",href:"/client/help",icon: <AiOutlineQuestionCircle size={20}/>},
     {name:"Account",href:"/client/account",icon: <FaUserCircle size={20}/>},
-    {name:"Disputes",href:"/client/disputes",icon: <MdReportProblem size={20}/>}
+    // {name:"Disputes",href:"/client/disputes",icon: <MdReportProblem size={20}/>}
 ]
 
   return (
