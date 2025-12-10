@@ -1,19 +1,39 @@
-import Link from "next/link";
+// import Link from "next/link";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Services from "./components/Services";
+import Projects from "./components/Projects";
+import Surveyors from "./components/Surveyors";
+import Questions from "./components/Questions";
+import Innovation from "./components/Innovation";
+import Testimonials from "./components/Testimonials";
+import ReachOut from "./components/ReachOut";
+import Footer from "./components/Footer";
+import { FaCircle } from "react-icons/fa";
+
 
 export default function Home() {
   return (
-    <div className="">
-      <nav className="flex items-center justify-around mt-4 text-white">
-        <div class="logo text-2xl"> SURVEYOR APP</div>
-        <div class="contact-us bg-orange-600 px-4 py-2 hover:bg-orange-700"> <Link href={"/login"}>Login</Link></div>
-      </nav>
-      <div class="hero-heading bg-black text-white">
-          <h1>Welcome</h1>
-          <p>Surveyor App is a digital platform that delivers a holistic and seamless 
-              solution to develop, deploy and operate space 
-              infrastructure in a time and cost-effective manner</p>
-          <Link href={"/signup"} className="bg-orange-600 px-4 py-2 hover:bg-orange-700">Sign UP</Link>
+    <div className="flex flex-col overflow-y-auto h-screen max-h-screen items-center">
+      <Navbar />
+      <Hero />
+      <div className="bg-orange-600 w-full flex items-center justify-evenly text-white p-4 text-2xl max-sm:hidden">
+        <span><FaCircle size={15} className="inline mr-4 mb-1"/>Best In Land Survey Services</span>
+        <span><FaCircle size={15} className="inline mr-4 mb-1"/>Excellent Precision</span>
+        <span><FaCircle size={15} className="inline mr-4 mb-1"/>Timely Deliveries</span>
+        <span><FaCircle size={15} className="inline mr-4 mb-1"/>Industry Standard</span>
       </div>
+      <Services />
+      <About />
+      <Projects />
+      <Surveyors />
+      <Questions />
+      <Innovation />
+      <Testimonials />
+      <ReachOut />
+      <Footer />
+      
     </div>
   );
 }

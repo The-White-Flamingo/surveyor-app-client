@@ -1,25 +1,24 @@
 "use client";
-import { useContext, useEffect } from "react";
-import { AuthContext } from "../../context/AuthContext";
 import { useRouter } from "next/navigation";
- 
+import useAuth from "../../hooks/clientHooks/useAuth";
 
-export default function ProtectedRoute({children,roles}) {
-    const { user, loading } = useContext(AuthContext);
+export default function ProtectedRoute({children,allowedRoles = []}) {
     const router = useRouter();
-
-    useEffect(()=>{
-        if(!loading && !user){
-            router.replace("/login")
-        }
-
-        if(!loading && user && roles && !roles.includes(user.role)) {
-            router.replace("/unauthorized");
-        }
-    },[user,loading,roles,router]);
-
-    if(loading || !user) {
+    const { data: user, isLoading: loading } = useAuth();
+    console.log("ProtectedRoute - Authenticated user: ", user);
+    if(loading) {
         return <p className="text-center mt-10">Checking authentication...</p>
     }
+
+    if(loading === false && !user) {
+        router.push("/login");
+        return null;
+    }
+
+    if(loading === false && user && allowedRoles.length > 0 && !allowedRoles.includes(user.role)) {
+        router.push("/unauthorized");
+        return null;
+    }
+    
     return children;
 }

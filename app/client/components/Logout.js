@@ -1,15 +1,16 @@
 "use client"
 import { useRouter } from "next/navigation";
 import { FiLogOut } from "react-icons/fi";
+import apiInstance from "../../lib/axios";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function LogoutButton() {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const logout = async () => {
-    await fetch("http://localhost:5000/api/signout", {
-      method: "POST",
-      credentials: "include",
-    });
+    await apiInstance.post("/client/logout");
+    queryClient.removeQueries({ queryKey: ["authUser"] });
 
     router.replace("/login");
   };

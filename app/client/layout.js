@@ -1,6 +1,5 @@
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
-// import ThemeProvider from "./context/ThemeContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 
@@ -32,25 +31,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
-// import Sidebar from "./components/Sidebar";
-// import Topbar from "./components/Topbar";
-
-
-// export default function RootLayout({ children }) {
-//   return (
-//     <html lang="en">
-//       <body className="max-w-full max-h-screen lg:overflow-hidden flex max-ms:flex max-sm:flex-col">
-//         <Sidebar />
-
-//         <div className="flex-1">
-//           <Topbar />
-//           <div className="px-4 py-2 max-sm:px-0">
-//             {children}
-//           </div>
-//         </div>
-
-//       </body>
-//     </html>
-//   );
-// }

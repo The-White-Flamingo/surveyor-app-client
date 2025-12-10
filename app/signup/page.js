@@ -1,12 +1,14 @@
 "use client";
-import { useState, useContext } from "react"
-import { AuthContext } from "../context/AuthContext"
-import { useRouter } from "next/navigation"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useQueryClient  } from "@tanstack/react-query";
+import apiInstance from "../lib/axios";
 import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa";
 
 export default function SignupPage() {
   const router = useRouter();
-  const { setUser } = useContext(AuthContext);
+  const queryClient = useQueryClient();
 
   const [firstName,setFirstName] = useState("");
   const [lastName,setLastName] = useState("");
@@ -16,96 +18,139 @@ export default function SignupPage() {
   const [residentialAddress,setResidentialAddress] = useState("");
   const [postalAddress,setPostalAddress] = useState("");
   const [errorMsg,setErrorMsg] = useState("");
+  const [ok,setOk] = useState(false)
 
   const handleSignin = async (e)=>{
     e.preventDefault();
     setErrorMsg("");
 
     try{
-      const res = await fetch("https://an-site-solutions-backend.onrender.com/api/signup",{
-        method: "POST",
-        credentials: "include",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({firstName,lastName,email,phoneNumber,password,residentialAddress,postalAddress,role:"client"}),
+      const res = await apiInstance.post("/client/signup",{
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+        password,
+        residentialAddress,
+        postalAddress,
+        role:"client"
       });
 
-      const data = await res.json();
-      console.log(data)
-      if(!res.ok) {
-        setErrorMsg(data.message || "Invalid credentials");
+      await queryClient.invalidateQueries({ queryKey: ["authUser"] });
+      
+      const {ok, message, user} = await res.data;
+
+      if(!ok) {
+        setErrorMsg(message || "Invalid credentials");
         return
       }
 
-      setUser(data.user);
-      
-      if (data.user.role === "client") router.push("/client/dashboard");
-      else if (data.user.role === "surveyor") router.push("/surveyor/dashboard");
-      else if (data.user.role === "admin") router.push("/admin/dashboard");
-      else router.push("/client/dashboard");
+      if(!user){
+        setErrorMsg("Invalid credentials");
+        return;
+      }
+
+      setOk(true);
+      setErrorMsg(message);
+
+      router.push("/client/dashboard");
+
     }catch(error){
       setErrorMsg("Something went wrong. Try again.")
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="max-h-screen w-full bg-white">
+      <div style={{background:"rgba(0,0,0,0.6)"}} className="w-full max-h-screen overflow-y-auto flex justify-center items-center max-sm:py-40">
+            <form className="flex flex-col gap-2 max-sm:w-full w-4xl p-6 bg-white rounded-3xl max-sm:mt-50 max-md:mt-30"
+            onSubmit={handleSignin}>
+              <Link href={"/"}><FaArrowLeft size={17} className="inline"/>Home</Link>
+              <h2 className="font-semibold text-2xl">Sign Up with your email</h2>
+              <span>Already have an account? <Link href={"/login"} className="underline cursor-pointer">Sign in</Link></span>
+              {ok ? (
+                <div className="text-green-500 rounded-md p-2 bg-green-100 font-bold my-2">{errorMsg}</div>
+              ) : (
+                  <>
+                      {errorMsg && (
+                          <div className="text-red-500 rounded-md p-2 bg-red-100 font-bold my-2">{errorMsg}</div>
+                      )}
+                  </>
+              )}
 
-      <div style={{background:"rgba(0,0,0,0.6)"}} className="w-full h-screen p-4 flex justify-center max-sm:p-0">
-        <div className="flex items-center shadow-lg w-2/3 rounded-md bg-orange-600 max-sm:w-ful">
+              
+              <div className="flex items-center gap-4 w-full max-sm:flex max-sm:flex-col">
+                {/* first name */}
+                <label htmlFor="firstName" className="w-full text-blue-600">
+                    First Name
+                    <input 
+                    required type="text" name="firstName" 
+                    onChange={(e)=>setFirstName(e.target.value)} 
+                    className="w-full p-3 rounded-full border border-gray-200 block"/>
+                </label>
+                {/* last name */}
+                <label htmlFor="lastName" className="w-full text-blue-600">
+                    Last Name
+                    <input 
+                    required type="text" name="lastName" 
+                    onChange={(e)=>setLastName(e.target.value)}
+                    className="w-full p-3 rounded-full border border-gray-200 block"/>
+                </label>
+            </div>
+            {/* email */}
+            <label htmlFor="email" className="text-blue-600">
+                Email
+                <input 
+                required type="email" name="email" 
+                onChange={(e)=>setEmail(e.target.value)}
+                className="w-full p-3 rounded-full border border-gray-200 block"/>
+            </label>
+            {/* phone number */}
+            <label htmlFor="phoneNumber" className="text-blue-600">
+                Phone number
+                <input 
+                required type="phone" name="phone" 
+                onChange={(e)=>setPhone(e.target.value)}
+                className="w-full p-3 rounded-full border border-gray-200 block"/>
+            </label>
+            {/* password */}
+            <label htmlFor="password" className="text-blue-600">
+                Password 
+                <input 
+                required type="password" name="password" 
+                onChange={(e)=>setPassword(e.target.value)}
+                className="w-full p-3 rounded-full border border-gray-200 block"/>
+            </label>
+            {/* confirm password */}
+            <label htmlFor="confirmPassword" className="text-blue-600">
+                Confirm password
+                <input 
+                required type="password" name="confirmPassword" 
+                onChange={(e)=>setConfirmPassword(e.target.value)}
+                className="w-full p-3 rounded-full border border-gray-200 block"/>
+            </label>
+            {/* residential address */}
+            <label htmlFor="residentialAddress" className="text-blue-600">
+                Residential address
+                <input 
+                required type="text" name="residentialAddress" 
+                onChange={(e)=>setResidentialAddress(e.target.value)}
+                className="w-full p-3 rounded-full border border-gray-200 block"/>
+            </label>
+            {/* postal address */}
+            <label htmlFor="postalAddress" className="text-blue-600">
+                Postal address
+                <input 
+                required type="text" name="postalAddress" 
+                onChange={(e)=>setPostalAddress(e.target.value)}
+                className="w-full p-3 rounded-full border border-gray-200 block"/>
+            </label>
 
-          <div className="w-full max-w-md rounded-md flex flex-col items-center max-sm:hidden">
-            <h3 className="text-white">Surveyor App</h3>
-            <span className="text-white mb-3 text-sm ">Already have an account</span>
-            <Link href={"/login"} className="text-white shadow-lg py-2 px-1 w-32 text-center rounded-full bg-orange-500 hover:bg-orange-700">Login</Link>
-          </div>
+            <button className="bg-orange-600 text-white rounded-full py-2 px-4 text-center hover:bg-orange-700 cursor-pointer mt-10">Continue</button>
+        </form>
 
-          <form onSubmit={handleSignin}
-            className="bg-white p-6 shadow-md rounded-md w-full max-w-md">
-            <h2 className="text-2xl font-bold mb-4 text-center">Signup</h2>
-
-            {errorMsg && <p className="bg-red-100 text-red-600 p-2 rounded mb-3">{errorMsg}</p>}
-
-            <label className="block mb-1 font-medum">First Name</label>
-            <input type="text" name="firstName" id="firstName"
-            onChange={(e)=>setFirstName(e.target.value)} 
-            className="border border-gray-300 w-full rounded-lg mb-2 py-1 px-2"/>
-
-            <label className="block mb-1 font-medium">Last Name</label>
-            <input type="text" name="lastName" id="lastName"
-            className="border border-gray-300 w-full rounded-lg mb-2 py-1 px-2"
-            onChange={(e)=>setLastName(e.target.value)} />
-
-            <label className="block mb-1 font-medium">Email</label>
-              <input type="text" className="border border-gray-300 w-full rounded-lg mb-2 py-1 px-2"
-              onChange={(e)=>setEmail(e.target.value)}/>
-
-            <label className="block mb-1 font-medium">Phone Number</label>
-              <input type="phone" className="border border-gray-300 w-full rounded-lg mb-2 py-1 px-2"
-              onChange={(e)=>setPhone(e.target.value)}/>
-
-            <label className="block mb-1 font-medium">Password</label>
-              <input type="password" className="border border-gray-300 w-full rounded-lg mb-2 py-1 px-2"
-              onChange={(e)=>setPassword(e.target.value)}/>
-
-            <label className="block mb-1 font-medium">Residential Address</label>
-              <input type="text" className="border border-gray-300 w-full rounded-lg mb-2 py-1 px-2"
-              onChange={(e)=>setResidentialAddress(e.target.value)}/>
-
-            <label className="block mb-1 font-medium">Postal Code</label>
-              <input type="text" className="border border-gray-300 w-full rounded-lg mb-2 py-1 px-2"
-              onChange={(e)=>setPostalAddress(e.target.value)}/>
-
-            <button 
-                className="w-full bg-orange-600 hover:bg-orange-700 text-white py-2 rounded-md font-bold"
-                type="submit"
-              >
-                Sign Up
-            </button>
-            <span className="text-black mb-3 block text-sm lg:hidden">Already have an account</span>
-            <Link href={"/login"} className="text-white block shadow-lg py-2 px-1 w-full text-center bg-orange-600 hover:bg-orange-700 lg:hidden">Login</Link>
-          </form>
-        </div>
       </div>
+
     </div>
   )
 }
