@@ -5,8 +5,14 @@ import { FiMenu } from 'react-icons/fi';
 import MobileNavbar from "./MobileNavbar";
 import { useEffect, useState } from 'react';
 import AccessOption from "./AccessOption";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const menu = [
+    {name:"Home",href:"/"},
+    {name:"Abot",href:"/about"},
+  ]
   const [showNavBar,setShowNavBar] = useState(false);
   const [showAccess,setShowAccess] = useState(false);
 
@@ -18,10 +24,10 @@ export default function Navbar() {
         <AccessOption showAccess={showAccess} setShowAccess={setShowAccess}/>
         <MobileNavbar showNavBar={showNavBar} setShowNavBar={setShowNavBar} />
         <Image src={"/ANSS.svg"} alt="logo" width={50} height={500} className="max-sm:inline lg:hidden"/>
-        <h3 className="font-bold text-md max-sm:hidden text-orange-600 flex items-center gap-2"><Image src={"/ANSS.svg"} alt="logo" width={50} height={20}/>Logoipsum</h3>
+        <h3 className="font-bold text-md max-sm:hidden text-orange-600 flex items-center gap-2"><Image src={"/ANSS.svg"} alt="logo" width={50} height={20}/>Surveyor Hub</h3>
         <nav className="flex items-center gap-4 max-sm:hidden">
-            <Link href={"/"}>Home</Link>
-            <Link href={"/about"}>About Us</Link>
+            <Link href={"/"} className={pathname === menu[0].href ? "text-orange-600" : "text-black"}>Home</Link>
+            <Link href={"/about"}  className={pathname === menu[1].href ? "text-orange-600" : "text-black"}>About Us</Link>
             <Link href={"/services"}>Services</Link>
             <Link href={"/how-it-works"}>How it works</Link>
         </nav>

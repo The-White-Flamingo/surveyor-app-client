@@ -10,7 +10,7 @@ export default function MobileNavbar({showNavBar,setShowNavBar}) {
         <div className="w-3/4 flex-1 self-end bg-black text-white flex flex-col gap-3 p-4">
             <div className="flex items-center justify-between">
                 <h3 className="font-semibold text-orange-600">
-                    Logoipsum
+                    Surveyor Hub
                 </h3>
                 <button onClick={()=>showNavBar ? setShowNavBar(false) : setShowNavBar(true)} className="p-4 bg-orange-600 text-white rounded-full"><FaTimes size={17}/></button>
             </div>
