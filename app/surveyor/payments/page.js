@@ -60,7 +60,7 @@ export default function Payments() {
     // <ProtectedRoute roles={["client"]}>
     <div>
         <div className="flex justify-start items-center gap-4 max-sm:hidden">
-          <Link href={"/client/payments/payment-due"} className="bg-white rounded-lg w-56 p-2 max-md:w-44">
+          <Link href={"/surveyor/payments/payment-due"} className="bg-white rounded-lg w-56 p-2 max-md:w-44">
             <div className="flex flex-col items-center gap-2">
               {/* icon */}
               <span className="bg-amber-100 p-2 rounded-md text-amber-300"><FiDollarSign size={30}/></span>
@@ -68,7 +68,7 @@ export default function Payments() {
               <span className="font-bold text-lg">$100</span>
             </div>
           </Link>
-          <Link href={"/client/payments/pending-payment"} className="bg-white rounded-lg w-56 p-2 max-md:w-44">
+          <Link href={"/surveyor/payments/pending-payment"} className="bg-white rounded-lg w-56 p-2 max-md:w-44">
             <div className="flex flex-col items-center gap-2">
               {/* icon */}
               <span className="rounded-md p-2 bg-red-100 text-red-300"><FiClock size={30}/></span>
@@ -76,7 +76,7 @@ export default function Payments() {
               <span className="font-bold text-lg">2</span>
             </div>
           </Link>
-          <Link href={"/client/payments/completed-payment"} className="bg-white rounded-lg w-56 p-2 max-md:w-44">
+          <Link href={"/surveyor/payments/completed-payment"} className="bg-white rounded-lg w-56 p-2 max-md:w-44">
             <div className="flex flex-col items-center gap-2">
               {/* icon */}
               <span className="rounded-md p-2 bg-emerald-100 text-emerald-300"><FiCheckCircle size={30}/></span>
@@ -118,7 +118,7 @@ export default function Payments() {
           <div className="flex flex-col gap-2 px-2">
             {payments.map((payment)=>(
               <>
-                <Link key={payment.surveyId} href={`/client/payments/${payment.surveyId}`} className="flex justify-between mt-1 hover:bg-gray-100 px-4 py-2 rounded-lg items-center text-sm font-bold max-sm:hidden max-md:hidden">
+                <Link key={payment.surveyId} href={`/surveyor/payments/${payment.surveyId}`} className="flex justify-between mt-1 hover:bg-gray-100 px-4 py-2 rounded-lg items-center text-sm font-bold max-sm:hidden max-md:hidden">
                   <span>{payment.surveyId}</span>
                   <span className="ml-5">${payment.amount}</span>
                   <span>{payment.date}</span>
@@ -127,7 +127,7 @@ export default function Payments() {
                   <span>Action</span>
                 </Link>  
 
-                <Link key={payment.surveyId} href={`/client/payments/${payment.surveyId}`} className="lg:hidden">
+                <Link key={payment.surveyId} href={`/surveyor/payments/${payment.surveyId}`} className="lg:hidden">
                   <div className="flex items-center justify-between rounded-lg gap-3 px-3 py-2 bg-gray-200 font-bold">
                     <span className="font-bold">Invoice#</span>
                     <span className="text-gray-600">{payment.surveyId}</span>

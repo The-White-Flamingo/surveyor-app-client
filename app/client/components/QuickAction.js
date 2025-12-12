@@ -23,7 +23,7 @@ export default function QuickAction() {
 
         <Link
           className="bg-gray-100 hover:bg-gray-300 px-3 py-2 max-sm:p-3 rounded-md mb-3 flex items-center gap-2"
-          href={""}
+          href={"/client/surveys"}
         >
           <FiFolder size={18} />
           View Completed Projects
@@ -31,7 +31,7 @@ export default function QuickAction() {
 
         <Link
           className="bg-gray-100 hover:bg-gray-300 px-3 py-2 max-sm:p-3 rounded-md mb-3 flex items-center gap-2"
-          href={""}
+          href={"/client/payments"}
         >
           <FiDollarSign size={18} />
           Make a Payment

@@ -8,6 +8,8 @@ import { FiMenu } from 'react-icons/fi';
 import MobileSideBar from './MobileSideBar';
 import useAuth from '../../hooks/clientHooks/useAuth';
 import Link from "next/link";
+import SearchBar from "./SearchBar";
+// import LanguagueOption from "./LanguagueOption";
 
 export default function Topbar() {
     const [showNavBar,setShowNavBar] = useState(false);
@@ -52,18 +54,21 @@ export default function Topbar() {
             <FiMenu size={20}/>
           </button>
 
+          <SearchBar />
+
           <div className="flex items-center gap-2 max-sm:self-end">
             {/* notification icon */}
+            {/* <LanguagueOption /> */}
             
             <Link href={"/client/notifications"} className="w-8 h-8 rounded-lg max-sm:w-8 max-sm:h-8 max-sm:rounded-lg max-sm:p-1 bg-amber-100 text-center flex justify-center items-center"><FiBell size={20}/></Link>
             {user.user.profilePhoto ? (
               <Image 
-                className=""
                 src={user.user.profilePhoto}
                 alt="Profile picture"
                 width={40}
                 height={40}
                 priority
+                className="rounded-full"
               />
             ):(
               <Image 

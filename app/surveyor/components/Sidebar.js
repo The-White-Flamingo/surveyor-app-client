@@ -8,6 +8,8 @@ import { BiMessageRounded } from "react-icons/bi";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
 import LogoutButton from "./Logout";
+import Logo from "./Logo";
+import SidebarLogo from "./SidebarLogo";
 
 export default function Sidebar() {
     const pathname = usePathname();
@@ -23,7 +25,8 @@ export default function Sidebar() {
 
   return (
     <aside className="bg-white flex flex-col gap-3 items-center w-64 min-h-screen max-sm:hidden max-md:hidden">
-        <h3 className='text-xl px-3 py-2 font-bold text-slate-900'>Client Panel</h3>
+        <Logo />
+        {/* <h3 className='text-xl px-3 py-2 font-bold text-slate-900'>Client Panel</h3> */}
         <nav className="text-left flex flex-col gap-2 px-8 w-56">
             {menu.map((item)=>(
                 <>
@@ -39,6 +42,7 @@ export default function Sidebar() {
             ))}
             <LogoutButton />
         </nav>
+        <SidebarLogo />
     </aside>
   )
 }

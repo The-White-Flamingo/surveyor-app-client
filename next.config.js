@@ -2,7 +2,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['res.cloudinary.com'], // add your Cloudinary domain
+    domains: ['res.cloudinary.com','https://flagcdn.com'], // add your Cloudinary domain
   },
 }
 

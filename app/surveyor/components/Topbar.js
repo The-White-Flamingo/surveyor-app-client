@@ -7,6 +7,9 @@ import { FiChevronDown } from "react-icons/fi";
 import { FiMenu } from 'react-icons/fi';
 import MobileSideBar from './MobileSideBar';
 import SurveyorAuth from "../../hooks/surveyorHooks/surveyorAuth";
+import SearchBar from "./SearchBar";
+// import LanguagueOption from "./LanguagueOption";
+import Link from "next/link"
 
 export default function Topbar() {
     const { data:surveyor} = SurveyorAuth();
@@ -35,7 +38,7 @@ export default function Topbar() {
       <MobileSideBar showNavBar={showNavBar} setShowNavBar={setShowNavBar}/>
       
       <div className="bg-white h-14 px-5 py-2 flex items-center justify-between max-sm:flex">
-          <h3 className="text-xl font-bold max-sm:hidden max-md:hidden">
+          <h3 className="text-xl font-bold max-sm:hidden max-md:hidden max-lg:hidden">
           {
               menu.map((item)=>(
                   pathname === item.href ? (
@@ -52,18 +55,23 @@ export default function Topbar() {
             <FiMenu size={20}/>
           </button>
 
+          <SearchBar />
+
           <div className="flex items-center gap-2 max-sm:self-end">
             {/* notification icon */}
+            {/* <LanguagueOption /> */}
             
-            <span className="w-8 h-8 rounded-lg max-sm:w-8 max-sm:h-8 max-sm:rounded-lg max-sm:p-1 bg-amber-100 text-center flex justify-center items-center"><FiBell size={20}/></span>
+            <Link href={"/surveyor/notifications"} className="w-8 h-8 rounded-lg max-sm:w-8 max-sm:h-8 max-sm:rounded-lg max-sm:p-1 bg-amber-100 text-center flex justify-center items-center"><FiBell size={20}/></Link>
             {surveyor.surveyor.profilePhoto ? (<>
               <Image 
-                className=""
+                // className=""
                 src={surveyor.surveyor.profilePhoto}
                 alt="Profile picture"
                 width={40}
                 height={40}
                 priority
+                className="rounded-full"
+
               />
             </>) : (<>
               <Image 

@@ -2,12 +2,13 @@
 import SurveyItem from "../components/SurveyItem";
 import GetAssignedSurveys from "../../hooks/surveyorHooks/getAssignedSurveys";
 import { useState } from "react";
-import SurveyorAuth from "../../hooks/surveyorHooks/surveyorAuth";
+// import SurveyorAuth from "../../hooks/surveyorHooks/surveyorAuth";
+// import RequestedSurveyItem from "../components/RequestedSurveyItem";
 
 export default function SurveysPage(){
     const {data: surveysData, isLoading, isError} = GetAssignedSurveys();
-    const {data: surveyor} = SurveyorAuth();
-    const surveyorId = surveyor.surveyor._id;
+    // const {data: surveyor} = SurveyorAuth();
+    // const surveyorId = surveyor.surveyor._id;
     // console.log("Authenticate surveyor in surveys page: ", surveyor.surveyor._id);
     const [filter,setFilter] = useState("requested");
 
@@ -15,20 +16,8 @@ export default function SurveysPage(){
 
     if(isError) return <p className="text-center mt-10">Error Loading surveys. Please try again later</p>
 
-    const surveys = surveysData || [
-        {
-            _id: "1231213",
-            surveyStatus: "requested",
-            title: "Site Survey",
-            location: "New York",
-            budget: 5000,
-            assignedSurveyor: surveyorId,
-            additionalNotes,
-            deadline
-        }
-    ];
+    const surveys = surveysData || [];
     
-
     const handleFilterChange = (e)=> {
         setFilter(e.target.value);
     }
@@ -57,6 +46,7 @@ export default function SurveysPage(){
             </div>
 
             <div className="flex flex-col gap-3">
+                
                 {filteredSurveys.length > 0 ? (
                     filteredSurveys.map((survey)=>(
                         <SurveyItem key={survey._id} survey={survey} surveyorId={surveyorId}/>

@@ -10,6 +10,8 @@ import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
 import LogoutButton from "./Logout";
 import Link from "next/link"
+import Logo from "./Logo";
+import SidebarLogo from "./SidebarLogo";
 
 export default function MobileSideBar({showNavBar,setShowNavBar}) {
     const pathname = usePathname();
@@ -29,7 +31,8 @@ export default function MobileSideBar({showNavBar,setShowNavBar}) {
             <button onClick={()=>showNavBar ? setShowNavBar(false) : setShowNavBar(true)} className='self-end font-medium p-2'>
                <FaTimes size={18}/> 
             </button>
-            <h3 className='text-xl px-3 py-2 font-bold text-slate-900'>Client Panel</h3>
+            {/* <h3 className='text-xl px-3 py-2 font-bold text-slate-900'>Client Panel</h3> */}
+            <Logo />
             <nav className="text-left flex flex-col gap-2 px-8 w-56">
                 {menu.map((item)=>(
                     <>
@@ -46,6 +49,7 @@ export default function MobileSideBar({showNavBar,setShowNavBar}) {
                 ))}
                 <LogoutButton />
             </nav>
+            <SidebarLogo />
         </div>
     </div>
   )

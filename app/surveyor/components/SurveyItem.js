@@ -28,7 +28,7 @@ export default function SurveyItem({survey, surveyorId}) {
                 <span className="text-sm">Project Cost</span>
             </div>
             <div className="flex justify-between">
-                <span className="text-sm text-gray-500 flex"><FiCalendar size={18} className='mr-2'/> {survey.surveyStatus === "requested" ? "Requested" : "Expected Completion"} - {survey.deadline && new Date(survey.deadline).toLocaleDateString()}</span>
+                <span className="text-sm text-gray-500 flex"><FiCalendar size={18} className='mr-2'/> {survey.surveyStatus === "requested" ? "Requested at" : "Expected Completion"} - {survey.createdAt && new Date(survey.createdAt).toLocaleDateString()}</span>
                 <span className="font-bold text-lg">${survey.budget}</span>
             </div>
             
