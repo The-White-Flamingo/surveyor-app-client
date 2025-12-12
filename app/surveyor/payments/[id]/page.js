@@ -42,8 +42,7 @@ export default function Payment() {
             </div>
             <button className="self-start px-4 py-2 bg-orange-600 hover:bg-orange-700 cursor-pointer text-white rounded-lg">Download Reciept</button>
         </div>
-  
-    </div>
+
     </div>
   )
 }
