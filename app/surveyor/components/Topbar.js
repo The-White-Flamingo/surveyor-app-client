@@ -6,16 +6,16 @@ import { FiBell } from "react-icons/fi";
 import { FiChevronDown } from "react-icons/fi";
 import { FiMenu } from 'react-icons/fi';
 import MobileSideBar from './MobileSideBar';
-import SurveyorAuth from "../../hooks/surveyorHooks/surveyorAuth";
+// import SurveyorAuth from "../../hooks/surveyorHooks/surveyorAuth";
 import SearchBar from "./SearchBar";
 // import LanguagueOption from "./LanguagueOption";
 import Link from "next/link"
 
 export default function Topbar() {
-    const { data:surveyor} = SurveyorAuth();
+    // const { data:surveyor} = SurveyorAuth();
     const [showNavBar,setShowNavBar] = useState(false);
 
-    console.log("Surveyor details in topbar: ",surveyor)
+    // console.log("Surveyor details in topbar: ",surveyor)
 
     useEffect(()=>{
     },[showNavBar])
@@ -62,7 +62,7 @@ export default function Topbar() {
             {/* <LanguagueOption /> */}
             
             <Link href={"/surveyor/notifications"} className="w-8 h-8 rounded-lg max-sm:w-8 max-sm:h-8 max-sm:rounded-lg max-sm:p-1 bg-amber-100 text-center flex justify-center items-center"><FiBell size={20}/></Link>
-            {surveyor.surveyor.profilePhoto ? (<>
+            {/* {surveyor.surveyor.profilePhoto ? (<>
               <Image 
                 // className=""
                 src={surveyor.surveyor.profilePhoto}
@@ -82,9 +82,23 @@ export default function Topbar() {
                 height={40}
                 priority
               />
-            </>)}
+            </>)} */}
 
-            {surveyor.surveyor ? (
+            <Image 
+                className=""
+                src="/profile1.png"
+                alt="Profile picture"
+                width={40}
+                height={40}
+                priority
+              />
+              <div className="flex flex-col">
+                <span className="font-semibold">Name</span>
+                <span className="text-sm text-gray-500">Role</span>
+              </div>
+              <FiChevronDown size={18} />
+
+            {/* {surveyor.surveyor ? (
               <>
               <div className="flex flex-col">
                 <span className="font-semibold">{surveyor.surveyor.firstName} {surveyor.surveyor.lastName}</span>
@@ -100,7 +114,7 @@ export default function Topbar() {
               </div>
               <FiChevronDown size={18} />
               </>
-            )}
+            )} */}
 
             {/* <Image 
               className=""

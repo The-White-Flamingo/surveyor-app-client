@@ -1,6 +1,6 @@
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
-import ProtectedRoute from "./components/ProtectedRoute";
+// import ProtectedRoute from "./components/ProtectedRoute";
 
 export const metadata = {
     title: "Surveyor App",
@@ -10,7 +10,7 @@ export default function SurveyorLayout({ children }) {
     return (
         <html lang="en">
             <body className="flex max-h-screen overflow-hidden bg-gray-100">
-                <ProtectedRoute allowedRoles={["surveyor"]}>
+                {/* <ProtectedRoute allowedRoles={["surveyor"]}> */}
                     {/* Sidebar*/}
                     <Sidebar /> 
                     {/* Main Content Area */}
@@ -22,7 +22,7 @@ export default function SurveyorLayout({ children }) {
                             {children}
                         </main>
                     </div>
-                </ProtectedRoute>
+                {/* </ProtectedRoute> */}
             </body>
         </html>
     );

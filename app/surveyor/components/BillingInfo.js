@@ -1,10 +1,10 @@
 "use client"
 import { useState } from "react";
-import {useQueryClient} from "@tanstack/react-query";
+// import {useQueryClient} from "@tanstack/react-query";
 import apiInstance from "../../lib/axios";
 
 export default function BillingInfo() {
-    const queryClient = useQueryClient();
+    // const queryClient = useQueryClient();
 
     const [form,setForm] = useState({
         firstName: "",
@@ -32,9 +32,9 @@ export default function BillingInfo() {
         e.preventDefault();
         setErrorMsg("");
         try {
-            const res = await apiInstance.post("/surveyor/billing-info", form, {withCredentials: true});
-            await queryClient.invalidateQueries({ queryKey: ["authSurveyor"] });
-            const { ok, message, billingInfo } = res.data;
+            // const res = await apiInstance.post("/surveyor/billing-info", form, {withCredentials: true});
+            // await queryClient.invalidateQueries({ queryKey: ["authSurveyor"] });
+            // const { ok, message, billingInfo } = res.data;
             console.log("Billing info update: ", ok, message, billingInfo);
             if(!ok) {
                 setErrorMsg(message || "Could not update billing info. Try again.");
@@ -65,7 +65,9 @@ export default function BillingInfo() {
             </>
         )}
 
-        <form action="" className="flex flex-col gap-4 mb-5" onSubmit={handleSubmit}>
+        <form action="" className="flex flex-col gap-4 mb-5" 
+            // onSubmit={handleSubmit}
+            >
             <div className="mt-4 flex items-center justify-between gap-4  max-sm:flex max-sm:flex-col max-sm:items-start">
                 <div className="flex flex-col w-full gap-2">
                     <label htmlFor="first-name" className="font-bold">First name:</label>

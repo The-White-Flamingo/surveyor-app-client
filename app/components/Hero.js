@@ -31,8 +31,8 @@ export default function Hero() {
                         faster, track progress in real-time, and ensure payments-all in one place.
                     </p>   
                     <div className="flex items-center gap-4 max-sm:flex max-sm:flex-col">
-                        <Link href={"/signup"} className="max-sm:w-full max-sm:flex max-sm:justify-center rounded-full py-2 px-4 flex items-center gap-3 bg-orange-600 text-white hover:bg-orange-700">Request a survey<FaArrowRight className="inline" size={15}/></Link>
-                        <Link href={"/surveyor-signup"} className="max-sm:w-full max-sm:flex max-sm:justify-center rounded-full py-2 px-4 flex items-center gap-3 border border-gray-200 hover:bg-gray-100">Sign up as a surveyor<FaArrowRight className="inline" size={15}/></Link>
+                        <Link href={"/client/dashboard"} className="max-sm:w-full max-sm:flex max-sm:justify-center rounded-full py-2 px-4 flex items-center gap-3 bg-orange-600 text-white hover:bg-orange-700">Request a survey<FaArrowRight className="inline" size={15}/></Link>
+                        <Link href={"/surveyor/dashboard"} className="max-sm:w-full max-sm:flex max-sm:justify-center rounded-full py-2 px-4 flex items-center gap-3 border border-gray-200 hover:bg-gray-100">Sign up as a surveyor<FaArrowRight className="inline" size={15}/></Link>
                     </div> 
                 </div>
             </div>

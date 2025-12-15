@@ -7,7 +7,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="flex max-h-screen overflow-hidden bg-gray-100">
-      <ProtectedRoute roles={["client"]}>
+      {/* <ProtectedRoute roles={["client"]}> */}
 
         {/* Sidebar*/}
         <Sidebar />
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
           </main>
 
         </div>
-        </ProtectedRoute>
+        {/* </ProtectedRoute> */}
 
       </body>
     </html>

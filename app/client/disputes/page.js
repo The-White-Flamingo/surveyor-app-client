@@ -1,22 +1,51 @@
 "use client";
 import DisputeItem from "../components/DisputeItem";
-import useClientDisputes from "../../hooks/clientHooks/useClientDisputes";
+// import useClientDisputes from "../../hooks/clientHooks/useClientDisputes";
 import { useState} from "react";
 
 export default function Dispute() {
 
-  const {data: disputesData, isLoading, isError} = useClientDisputes();
+  // const {data: disputesData, isLoading, isError} = useClientDisputes();
   const [filter, setFilter] = useState("Pending");
 
-  if(isLoading) {
-    return <p className="text-center mt-10">Loading disputes...</p>
-  }
+  // if(isLoading) {
+  //   return <p className="text-center mt-10">Loading disputes...</p>
+  // }
 
-  if(isError) {
-    return <p className="text-center mt-10">Error loading disputes. Please try again later.</p>
-  }
+  // if(isError) {
+  //   return <p className="text-center mt-10">Error loading disputes. Please try again later.</p>
+  // }
 
-  const disputes = disputesData || [{}];
+  // const disputes = disputesData || [{}];
+  const disputes = [
+    {
+      _id:"1234",
+      reason:"Inccorrect Charge",
+      explanation:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dicta similique, iusto rem dolorum deserunt labore est recusandae iste voluptas magnam autem vel consequatur assumenda culpa! Ad blanditiis iste necessitatibus expedita minus hic fugiat nostrum voluptates, adipisci molestias tenetur autem!",
+      status:"Pending",
+      resolutionPreference:"Redo survey",
+      survey:"5321",
+      createdAt:"2025-10-11"
+    },
+    {
+      _id:"1235",
+      reason:"Survey quailty work",
+      explanation:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dicta similique, iusto rem dolorum deserunt labore est recusandae iste voluptas magnam autem vel consequatur assumenda culpa! Ad blanditiis iste necessitatibus expedita minus hic fugiat nostrum voluptates, adipisci molestias tenetur autem!",
+      status:"Resolved",
+      resolutionPreference:"Refund",
+      survey:"6321",
+      createdAt:"2025-10-11"
+    },{
+      _id:"1236",
+      reason:"Delayed service",
+      explanation:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dicta similique, iusto rem dolorum deserunt labore est recusandae iste voluptas magnam autem vel consequatur assumenda culpa! Ad blanditiis iste necessitatibus expedita minus hic fugiat nostrum voluptates, adipisci molestias tenetur autem!",
+      status:"Cancelled",
+      resolutionPreference:"Pending",
+      survey:"7321",
+      createdAt:"2025-10-11"
+    },
+  ];
+
 
   const handleFilterChange = (e)=>{
     setFilter(e.target.value);

@@ -1,18 +1,20 @@
 "use client"
 import { useRouter } from "next/navigation";
 import { FiLogOut } from "react-icons/fi";
-import apiInstance from "../../lib/axios";
-import { useQueryClient } from "@tanstack/react-query";
+// import apiInstance from "../../lib/axios";
+// import { useQueryClient } from "@tanstack/react-query";
 
 export default function LogoutButton() {
   const router = useRouter();
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
   const logout = async () => {
-    await apiInstance.post("/surveyor/logout");
-    queryClient.removeQueries({ queryKey: ["authSurveyor"] });
+    // await apiInstance.post("/surveyor/logout");
+    // queryClient.removeQueries({ queryKey: ["authSurveyor"] });
 
-    router.replace("/surveyor-login");
+    // router.replace("/surveyor-login");
+    router.push("/");
+
   };
 
   return (

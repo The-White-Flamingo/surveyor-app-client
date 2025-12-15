@@ -2,7 +2,7 @@
 import { FaForward, FaArrowRight } from "react-icons/fa";
 import Image from "next/image";
 
-import React from 'react'
+import Link from 'next/link';
 
 export default function About() {
   return (
@@ -27,11 +27,16 @@ export default function About() {
                 <span><FaForward size={10} className="inline mr-2"/>Fast & Reliable Service</span>
                 <span><FaForward size={10} className="inline mr-2"/>Transparent Pricing</span>
                 </div>
-                <button 
+                {/* <button 
                 className="bg-orange-600 self-start text-white py-2 px-4 rounded-full hover:bg-orange-700">
                     Join Today 
                     <FaArrowRight size={15} className="inline ml-2"/>
-                </button>
+                </button> */}
+                <Link href={"/client/dashboard"}
+                className="bg-orange-600 self-start text-white py-2 px-4 rounded-full hover:bg-orange-700">
+                    Join Today 
+                    <FaArrowRight size={15} className="inline ml-2"/>
+                </Link>
             </div>
             </div>
             

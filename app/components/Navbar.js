@@ -33,8 +33,10 @@ export default function Navbar() {
         </nav>
         <div className="flex items-center gap-4">
             <button onClick={()=>showNavBar ? setShowNavBar(false) : setShowNavBar(true)} className="lg:hidden"><FiMenu size={17}/></button>
-            <Link href={"/surveyor-signup"} className="bg-gray-50 py-2 px-5 rounded-full hover:bg-gray-100 max-sm:hidden">Join as Surveyor</Link>
-            <button onClick={()=>showAccess ? setShowAccess(false) : setShowAccess(true)} className="bg-orange-600 text-white py-2 px-5 rounded-full hover:bg-orange-700 max-sm:hidden">Sign in</button>
+            <Link href={"/surveyor/dashboard"} className="bg-gray-50 py-2 px-5 rounded-full hover:bg-gray-100 max-sm:hidden">Join as Surveyor</Link>
+            <Link href={"/client/dashboard"} className="bg-orange-600 text-white py-2 px-5 rounded-full hover:bg-orange-700 max-sm:hidden">Sign In</Link>
+            
+            {/* <button onClick={()=>showAccess ? setShowAccess(false) : setShowAccess(true)} className="bg-orange-600 text-white py-2 px-5 rounded-full hover:bg-orange-700 max-sm:hidden">Sign in</button> */}
         </div>
     </div>
   )

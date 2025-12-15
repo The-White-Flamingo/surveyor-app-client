@@ -6,16 +6,16 @@ import { FiBell } from "react-icons/fi";
 import { FiChevronDown } from "react-icons/fi";
 import { FiMenu } from 'react-icons/fi';
 import MobileSideBar from './MobileSideBar';
-import useAuth from '../../hooks/clientHooks/useAuth';
+// import useAuth from '../../hooks/clientHooks/useAuth';
 import Link from "next/link";
 import SearchBar from "./SearchBar";
 // import LanguagueOption from "./LanguagueOption";
 
 export default function Topbar() {
     const [showNavBar,setShowNavBar] = useState(false);
-    const { data: user, isLoading } = useAuth();
+    // const { data: user, isLoading } = useAuth();
 
-    console.log(user.user);
+    // console.log(user.user);
     useEffect(()=>{
     },[showNavBar])
 
@@ -60,8 +60,8 @@ export default function Topbar() {
             {/* notification icon */}
             {/* <LanguagueOption /> */}
             
-            <Link href={"/client/notifications"} className="w-8 h-8 rounded-lg max-sm:w-8 max-sm:h-8 max-sm:rounded-lg max-sm:p-1 bg-amber-100 text-center flex justify-center items-center"><FiBell size={20}/></Link>
-            {user.user.profilePhoto ? (
+            <Link href={"/client/notifications"} className="w-8 h-8 rounded-lg max-sm:w-8 max-sm:h-8 max-sm:rounded-lg max-sm:p-1 text-center flex justify-center items-center"><FiBell size={20}/></Link>
+            {/* {user.user.profilePhoto ? (
               <Image 
                 src={user.user.profilePhoto}
                 alt="Profile picture"
@@ -79,9 +79,23 @@ export default function Topbar() {
                 height={40}
                 priority
               />
-            )}
+            )} */}
 
-            {user.user ? (
+            <Image 
+                className=""
+                src="/profile1.png"
+                alt="Profile picture"
+                width={40}
+                height={40}
+                priority
+              />
+
+            <div className="flex flex-col">
+              <span className="font-semibold">Name</span>
+              <span className="text-sm text-gray-500">Role</span>
+            </div>
+            <FiChevronDown size={18} />
+            {/* {user.user ? (
               <>
               <div className="flex flex-col">
                 <span className="font-semibold">{user.user.firstName} {user.user.lastName}</span>
@@ -97,7 +111,7 @@ export default function Topbar() {
               </div>
               <FiChevronDown size={18} />
               </>
-            )}
+            )} */}
             {/* {user.profilePhoto ? (<>
               <Image 
                 className=""

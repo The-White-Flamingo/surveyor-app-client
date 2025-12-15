@@ -4,7 +4,7 @@ import { FiEdit3 } from "react-icons/fi"
 export default function DisputeDetail({dispute}) {
   return (
     <div className="bg-white rounded-lg p-5 mt-5 max-w-3xl flex flex-col gap-3">
-        <h3 className="font-bold">Dispute #{dispute._id.substring(0, 8)}</h3>
+        <h3 className="font-bold">Dispute #{dispute._id}</h3>
         <div className="flex justify-between items-center border-b-2 border-gray-300 pb-3">
             <span className="text-md font-bold text-gray-400">
                 {new Date(dispute.createdAt).toLocaleDateString("en-US", {

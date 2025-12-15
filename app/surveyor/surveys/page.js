@@ -1,22 +1,26 @@
 "use client";
 import SurveyItem from "../components/SurveyItem";
-import GetAssignedSurveys from "../../hooks/surveyorHooks/getAssignedSurveys";
+// import GetAssignedSurveys from "../../hooks/surveyorHooks/getAssignedSurveys";
 import { useState } from "react";
 // import SurveyorAuth from "../../hooks/surveyorHooks/surveyorAuth";
 // import RequestedSurveyItem from "../components/RequestedSurveyItem";
 
 export default function SurveysPage(){
-    const {data: surveysData, isLoading, isError} = GetAssignedSurveys();
+    // const {data: surveysData, isLoading, isError} = GetAssignedSurveys();
     // const {data: surveyor} = SurveyorAuth();
     // const surveyorId = surveyor.surveyor._id;
     // console.log("Authenticate surveyor in surveys page: ", surveyor.surveyor._id);
     const [filter,setFilter] = useState("requested");
 
-    if(isLoading) return <p className="text-center mt-10">Loading Surveys...</p>
+    // if(isLoading) return <p className="text-center mt-10">Loading Surveys...</p>
 
-    if(isError) return <p className="text-center mt-10">Error Loading surveys. Please try again later</p>
+    // if(isError) return <p className="text-center mt-10">Error Loading surveys. Please try again later</p>
 
-    const surveys = surveysData || [];
+    // const surveys = surveysData || [];
+    const surveys = [
+        {}
+    ];
+
     
     const handleFilterChange = (e)=> {
         setFilter(e.target.value);

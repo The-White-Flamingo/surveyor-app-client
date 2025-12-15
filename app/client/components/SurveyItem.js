@@ -7,7 +7,7 @@ import { FiArrowRight, FiCalendar  } from "react-icons/fi";
 export default function SurveyItem({survey}) {
   return (
     <div className="bg-white max-w-full rounded-md p-5 mt-3 relative">
-        <span className={`${survey.surveyStatus === "Ongoing" ? "bg-blue-100 text-blue-500 rounded-md font-bold px-4 py-2" : survey.surveyStatus === "pending_admin_approval" ? "text-amber-300 bg-amber-100 rounded-md font-bold px-4 py-2": survey.surveyStatus === "Expired" ? "text-red-300 bg-red-100 rounded-md font-bold px-4 py-2" : ""}`}>{survey.surveyStatus}</span>
+        <span className={`${survey.surveyStatus === "ongoing" ? "bg-blue-100 text-blue-500 rounded-md font-bold px-4 py-2" : survey.surveyStatus === "pending_admin_approval" ? "text-amber-300 bg-amber-100 rounded-md font-bold px-4 py-2": survey.surveyStatus === "expired" ? "text-red-300 bg-red-100 rounded-md font-bold px-4 py-2" : ""}`}>{survey.surveyStatus}</span>
         <div className="flex flex-col gap-1 mt-4">
             <div className="flex justify-between">
                 <span className="font-bold">{survey.title} - {survey.location}</span>

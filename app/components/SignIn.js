@@ -2,13 +2,13 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useQueryClient } from "@tanstack/react-query";
+// import { useQueryClient } from "@tanstack/react-query";
 import apiInstance from "../lib/axios";
 import Link from "next/link";
 
 export default function SignIn({clientSignIn,setClientSignIn,setSurveyorSignIn,setAccess}) {
   const router = useRouter();
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +25,7 @@ export default function SignIn({clientSignIn,setClientSignIn,setSurveyorSignIn,s
         password,
       });
 
-      await queryClient.invalidateQueries({ queryKey: ["authUser"] });
+      // await queryClient.invalidateQueries({ queryKey: ["authUser"] });
 
       const { ok, message, user } = res.data;
 

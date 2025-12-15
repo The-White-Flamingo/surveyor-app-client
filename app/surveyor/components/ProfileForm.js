@@ -1,14 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import apiInstance from '../../lib/axios';
-import SurveyorAuth from "../../hooks/surveyorHooks/surveyorAuth";
+// import apiInstance from '../../lib/axios';
+// import SurveyorAuth from "../../hooks/surveyorHooks/surveyorAuth";
 import Image from "next/image";
 import { FaTrashCan, FaPen, FaPlus } from "react-icons/fa6";
 
 export default function ProfileForm() {
   const queryClient = useQueryClient();
-  const { data: surveyor, isLoading } = SurveyorAuth();
+  // const { data: surveyor, isLoading } = SurveyorAuth();
 
   const [form, setForm] = useState({
     firstName: "", lastName: "", tagline: "", country: "", about: "",
@@ -30,29 +30,29 @@ export default function ProfileForm() {
   }]);
 
   // Load data when surveyor is available
-  useEffect(() => {
-    if (surveyor?.surveyor) {
-      const s = surveyor.surveyor;
-      setForm({
-        firstName: s.firstName || "",
-        lastName: s.lastName || "",
-        tagline: s.tagline || "",
-        country: s.country || "",
-        about: s.about || "",
-        surveyorType: s.surveyorType || "",
-        yearsOfExperience: s.yearsOfExperience || 0,
-        projectDetails: s.projectDetails || "",
-      });
+  // useEffect(() => {
+  //   if (surveyor?.surveyor) {
+  //     const s = surveyor.surveyor;
+  //     setForm({
+  //       firstName: s.firstName || "",
+  //       lastName: s.lastName || "",
+  //       tagline: s.tagline || "",
+  //       country: s.country || "",
+  //       about: s.about || "",
+  //       surveyorType: s.surveyorType || "",
+  //       yearsOfExperience: s.yearsOfExperience || 0,
+  //       projectDetails: s.projectDetails || "",
+  //     });
 
-      setProfilePhotoPreview(s.profilePhoto || "/profile1.png");
+  //     setProfilePhotoPreview(s.profilePhoto || "/profile1.png");
 
-      setLanguages(s.languages || [""]);
-      setFileFormats(s.fileFormat || [""]);
-      setSoftwares(s.softwares || [""]);
-      setCertifications(s.professionalCertifications || [""]);
-      setEducation(s.education || [{ title: "", institutionName: "", dateFrom: "", dateTo: "", description: "" }]);
-    }
-  }, [surveyor]);
+  //     setLanguages(s.languages || [""]);
+  //     setFileFormats(s.fileFormat || [""]);
+  //     setSoftwares(s.softwares || [""]);
+  //     setCertifications(s.professionalCertifications || [""]);
+  //     setEducation(s.education || [{ title: "", institutionName: "", dateFrom: "", dateTo: "", description: "" }]);
+  //   }
+  // }, [surveyor]);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
   const handlePhotoChange = (e) => {
@@ -99,12 +99,12 @@ export default function ProfileForm() {
 
       if (profilePhoto) formData.append("profilePhoto", profilePhoto);
 
-      const res = await apiInstance.put("/surveyor/complete-profile", formData, {
-        withCredentials: true,
-        headers: { "Content-Type": "multipart/form-data" }
-      });
+      // const res = await apiInstance.put("/surveyor/complete-profile", formData, {
+      //   withCredentials: true,
+      //   headers: { "Content-Type": "multipart/form-data" }
+      // });
 
-      await queryClient.invalidateQueries({ queryKey: ["authSurveyor"] });
+      // await queryClient.invalidateQueries({ queryKey: ["authSurveyor"] });
       setOk(true);
       setErrorMsg("Profile updated successfully!");
     } catch (err) {
@@ -112,7 +112,7 @@ export default function ProfileForm() {
     }
   };
 
-  if (isLoading) return <div className="p-4">Loading profile...</div>;
+  // if (isLoading) return <div className="p-4">Loading profile...</div>;
 
   return (
     <div className="max-w-3xl bg-white rounded-lg px-3 py-1 max-sm:flex max-sm:flex-col mt-5 flex-1">
@@ -132,7 +132,9 @@ export default function ProfileForm() {
         {ok && <div className="bg-green-100 text-green-700 p-3 rounded mb-4">✓ {errorMsg}</div>}
         {errorMsg && !ok && <div className="bg-red-100 text-red-700 p-3 rounded mb-4">✗ {errorMsg}</div>}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form 
+          // onSubmit={handleSubmit}
+           className="space-y-4">
           <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
             <input placeholder="First Name" name="firstName" value={form.firstName} onChange={handleChange} className="border rounded-lg px-4 py-2" />
             <input placeholder="Last Name" name="lastName" value={form.lastName} onChange={handleChange} className="border rounded-lg px-4 py-2" />

@@ -1,10 +1,10 @@
 "use client"
 import {useState} from "react";
-import { useQueryClient } from "@tanstack/react-query";
-import apiInstance from "../../lib/axios";
+// import { useQueryClient } from "@tanstack/react-query";
+// import apiInstance from "../../lib/axios";
 
 export default function AccountSettings() {
-    const queryClient = useQueryClient();
+    // const queryClient = useQueryClient();
     const [form,setForm] = useState({
         currentPassword: "",
         newPassword: "",
@@ -30,8 +30,8 @@ export default function AccountSettings() {
         }
 
         try {
-            const res = await apiInstance.put("/client/update-password", form, {withCredentials: true});
-            await queryClient.invalidateQueries({ queryKey: ["authUser"] });
+            // const res = await apiInstance.put("/client/update-password", form, {withCredentials: true});
+            // await queryClient.invalidateQueries({ queryKey: ["authUser"] });
             const { ok, message } = res.data;
             console.log("Account settings update: ", ok, message);
             if(!ok) {
@@ -67,7 +67,9 @@ export default function AccountSettings() {
                 {errorMsg}
             </div>
         ) : null} */}
-        <form className="my-4 flex flex-col gap-3" onSubmit={handleSubmit}>   
+        <form className="my-4 flex flex-col gap-3" 
+            // onSubmit={handleSubmit}
+            >   
             <div className="border-t-2 border-b-2 border-gray-300 flex flex-col gap-4 py-4">
                 <div className="flex gap-3 items-center justify-between">
                     <label htmlFor="current-password" className="text-sm font-bold">Current password:</label>

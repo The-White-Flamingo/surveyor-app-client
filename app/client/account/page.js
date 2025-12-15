@@ -6,11 +6,11 @@ import BillingInfo from "../components/BillingInfo";
 import { FiSettings } from "react-icons/fi"
 import { FaIdCard } from "react-icons/fa"
 import { FiUser } from "react-icons/fi"
-import GetClientProfile from "../../hooks/clientHooks/getClientProfile";
+// import GetClientProfile from "../../hooks/clientHooks/getClientProfile";
 
 
 export default function Account() {
-  const {data: user} = GetClientProfile();
+  // const {data: user} = GetClientProfile();
   const [profile,setProfile] = useState(true);
   const [billingInfo,setBillingInfo] = useState(false);
   const [account,setAccount] = useState(false);
@@ -52,7 +52,7 @@ export default function Account() {
 
         {billingInfo ? (
           <>
-            <BillingInfo user={user} />
+            <BillingInfo />
           </>
         ):(
           <>

@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { useQueryClient } from "@tanstack/react-query";
-import apiInstance from "../../lib/axios";
-import useAuth from "../../hooks/clientHooks/useAuth";
+// import { useQueryClient } from "@tanstack/react-query";
+// import apiInstance from "../../lib/axios";
+// import useAuth from "../../hooks/clientHooks/useAuth";
 import { FaCamera } from "react-icons/fa";
 
 export default function ProfileForm() {
-  const queryClient = useQueryClient();
-  const { data: authUser, isLoading } = useAuth();
+  // const queryClient = useQueryClient();
+  // const { data: authUser, isLoading } = useAuth();
 
   const [form, setForm] = useState({
     firstName: "",
@@ -26,27 +26,29 @@ export default function ProfileForm() {
   const [successMsg, setSuccessMsg] = useState("");
 
   // Populate form when user data loads
-  useEffect(() => {
-    if (authUser?.user) {
-      const user = authUser.user;
-      setForm({
-        firstName: user.firstName || "",
-        lastName: user.lastName || "",
-        country: user.country || "",
-        phoneNumber: user.phoneNumber || "",
-        residentialAddress: user.residentialAddress || "",
-        postalAddress: user.postalAddress || "",
-      });
+  // useEffect(() => {
+  //   if (authUser?.user) {
+  //     const user = authUser.user;
+  //     setForm({
+  //       firstName: user.firstName || "",
+  //       lastName: user.lastName || "",
+  //       country: user.country || "",
+  //       phoneNumber: user.phoneNumber || "",
+  //       residentialAddress: user.residentialAddress || "",
+  //       postalAddress: user.postalAddress || "",
+  //     });
 
-      // Set existing photo preview (adjust URL if needed)
-      if (user.profilePhoto) {
-        setProfilePhotoPreview(user.profilePhoto.startsWith("http") 
-          ? user.profilePhoto 
-          : `/uploads/${user.profilePhoto}` // adjust path as per your backend
-        );
-      }
-    }
-  }, [authUser]);
+  //     // Set existing photo preview (adjust URL if needed)
+  //     if (user.profilePhoto) {
+  //       setProfilePhotoPreview(user.profilePhoto.startsWith("http") 
+  //         ? user.profilePhoto 
+  //         : `/uploads/${user.profilePhoto}` // adjust path as per your backend
+  //       );
+  //     }
+  //   }
+  // }, [
+  //   // authUser
+  // ]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -78,12 +80,12 @@ export default function ProfileForm() {
         formData.append("profilePhoto", profilePhoto);
       }
 
-      const res = await apiInstance.put("/client/profile", formData, {
-        withCredentials: true,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      // const res = await apiInstance.put("/client/profile", formData, {
+      //   withCredentials: true,
+      //   headers: { "Content-Type": "multipart/form-data" },
+      // });
 
-      await queryClient.invalidateQueries({ queryKey: ["authUser"] });
+      // await queryClient.invalidateQueries({ queryKey: ["authUser"] });
 
       if (!res.data.ok) {
         setErrorMsg(res.data.message || "Failed to update profile.");
@@ -97,13 +99,13 @@ export default function ProfileForm() {
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className="max-w-3xl mx-auto p-8 text-center">
-        <p>Loading your profile...</p>
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="max-w-3xl mx-auto p-8 text-center">
+  //       <p>Loading your profile...</p>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="max-w-3xl bg-white rounded-lg px-3 py-1 max-sm:flex max-sm:flex-col mt-5 flex-1">
@@ -142,7 +144,9 @@ export default function ProfileForm() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form 
+        // onSubmit={handleSubmit} 
+        className="space-y-6">
         {/* Name Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
@@ -174,7 +178,8 @@ export default function ProfileForm() {
           <label className="block font-bold mb-2">Email Address</label>
           <input
             type="email"
-            value={authUser.user?.email || ""}
+            // value={authUser.user?.email || ""}
+            value={"johndoe@example.com"}
             disabled
             className="w-full bg-gray-100 text-gray-700 rounded-lg px-4 py-2 cursor-not-allowed"
           />

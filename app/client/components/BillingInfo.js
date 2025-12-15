@@ -1,23 +1,36 @@
 "use client"
 import { useState } from "react";
-import {useQueryClient} from "@tanstack/react-query";
-import apiInstance from "../../lib/axios";
+// import {useQueryClient} from "@tanstack/react-query";
+// import apiInstance from "../../lib/axios";
 
-export default function BillingInfo({ user }) {
-    const queryClient = useQueryClient();
-    console.log("Authenticated user in profile form: ", user);
+export default function BillingInfo() {
+    // const queryClient = useQueryClient();
+    // console.log("Authenticated user in profile form: ", user);
+
+    // const [form,setForm] = useState({
+    //     firstName: user?.firstName || "",
+    //     lastName: user?.lastName || "",
+    //     country: user?.country || "",
+    //     companyTitle: user?.companyTitle || "",
+    //     city: user?.city || "",
+    //     address: user?.address || "",
+    //     postCode: user?.postCode || "",
+    //     email: user?.email || "",
+    //     phone: user?.phone || ""
+    // });
 
     const [form,setForm] = useState({
-        firstName: user?.firstName || "",
-        lastName: user?.lastName || "",
-        country: user?.country || "",
-        companyTitle: user?.companyTitle || "",
-        city: user?.city || "",
-        address: user?.address || "",
-        postCode: user?.postCode || "",
-        email: user?.email || "",
-        phone: user?.phone || ""
+        firstName: "",
+        lastName: "",
+        country: "",
+        companyTitle: "",
+        city: "",
+        address: "",
+        postCode: "",
+        email: "",
+        phone: ""
     });
+
     const [errorMsg,setErrorMsg] = useState("");
     const [ok, setOk] = useState(false);
 
@@ -33,8 +46,8 @@ export default function BillingInfo({ user }) {
         e.preventDefault();
         setErrorMsg("");
         try {
-            const res = await apiInstance.post("/client/billing-info", form, {withCredentials: true});
-            await queryClient.invalidateQueries({ queryKey: ["authUser"] });
+            // const res = await apiInstance.post("/client/billing-info", form, {withCredentials: true});
+            // await queryClient.invalidateQueries({ queryKey: ["authUser"] });
             const { ok, message, billingInfo } = res.data;
             console.log("Billing info update: ", ok, message, billingInfo);
             if(!ok) {
@@ -75,7 +88,9 @@ export default function BillingInfo({ user }) {
                 {errorMsg}
             </div>
         ) : null} */}
-        <form action="" className="flex flex-col gap-4 mb-5" onSubmit={handleSubmit}>
+        <form action="" className="flex flex-col gap-4 mb-5" 
+            // onSubmit={handleSubmit}
+            >
             <div className="mt-4 flex items-center justify-between gap-4  max-sm:flex max-sm:flex-col max-sm:items-start">
                 <div className="flex flex-col w-full gap-2">
                     <label htmlFor="first-name" className="font-bold">First name:</label>
